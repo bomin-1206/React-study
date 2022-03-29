@@ -1,18 +1,72 @@
-import "./App.css";
+import MyComponent from './MyComponent';
 
-function App() {
-  const name = "리액트";
-  return (
-    <div>
-      <div className="react">{name}</div>
-      <h1>들여쓰기가 이상한</h1>
-      <h2>코드</h2>
-      <p>입니다.</p>
-    </div>
-  );
-}
+const App = () => {
+  return <MyComponent name ="React">리액트</MyComponent>;
+};
 
 export default App;
+
+// import MyComponent from './MyComponent';
+
+// const App = () => {
+//   return <MyComponent>리액트</MyComponent>;
+// };
+
+// export default App;
+
+// import MyComponent from './MyComponent';
+
+// const App = () => {
+//   return <MyComponent />
+// };
+
+// export default App;
+
+// import MyComponent from './MyComponent';
+
+// const App = () => {
+//   return <MyComponent />
+// };
+
+// export default App;
+
+// import { Component } from 'react';
+
+// class App extends Component {
+//   render() { //클래스형 컴포넌트에는 render함수가 꼭 있어야 함.
+//     const name = 'react';
+//     return <div className="react">{name}</div>;
+//   }
+// }
+
+// export default App;
+
+// // 컴포넌트를 선언하는 방식은 2가지
+// // 하나는 함수 컴포넌트이고, 하나는 클래스형 컴포넌트
+// import './App.css';
+// // 함수 컴포넌트
+// function App() {
+//   const name = '리액트';
+//   return <div className = "react">{name}</div>;
+// }
+
+// export default App;
+
+// import "./App.css";
+
+// function App() {
+//   const name = "리액트";
+//   return (
+//     <div>
+//       <div className="react">{name}</div>
+//       <h1>들여쓰기가 이상한</h1>
+//       <h2>코드</h2>
+//       <p>입니다.</p>
+//     </div>
+//   );
+// }
+
+// export default App;
 
 // import './App.css';
 
