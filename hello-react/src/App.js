@@ -1,22 +1,83 @@
+import "./App.css";
+
 function App() {
-  const name = '리액트';
+  const name = "리액트";
   return (
-    <div
-      style={{
-        // background-color는 backgroundColor와 같이 -가 사라지고 카멜 표기법으로 작성됩니다.
-        backgroundColor : 'black',
-        color : 'aqua',
-        fontSize : '48px', //font-size -> fontSize
-        fontWeight: 'bold', //font-weight -< fontWeight
-        padding: 16 //단위를 생략하면 px로 지정됩니다.
-      }}
-    >
-      {name}
+    <div>
+      <div className="react">{name}</div>
+      <h1>들여쓰기가 이상한</h1>
+      <h2>코드</h2>
+      <p>입니다.</p>
     </div>
   );
 }
 
 export default App;
+
+// import './App.css';
+
+// function App() {
+//   const name = '리액트';
+//   return (
+//     <>
+//       {/* 주석은 이렇게 작성합니다. */}
+//       <div
+//         className="react" //시작 태그를 여러 줄로 작성하게 된다면 여기에 주석을 작성할 수 있습니다.
+//       >
+//         {name}
+//       </div>
+//       //하지만 이런 주석이나
+//       /* 이런 주석은 페이지에 그대로 나타나게 됩니다. */
+//       <input />
+//     </>
+//   );
+// }
+
+// export default App;
+
+// import './App.css';
+
+// function App() {
+//   const name = '리액트';
+//   return (
+//     <>
+//       <div className="react">{name}</div>
+//       <input /> {/* 이렇게 선언하면서 동시에 닫을 수도 있다.*/}
+//       {/* <input></input> input태그를 사용할떄 html에서는 안닫아줘도 실행이 되지만 react는 안된다. */}
+//     </>
+//   );
+// }
+
+// export default App;
+
+// import './App.css';
+
+// function App() {
+//   const name = '리액트';
+//   return <div className="react">{name}</div>
+// }
+
+// export default App;
+
+// function App() {
+//   const name = '리액트';
+//   return (
+//     <div
+//       style={{
+//         // background-color는 backgroundColor와 같이 -가 사라지고 카멜 표기법으로 작성됩니다.
+//         backgroundColor : 'black',
+//         color : 'aqua',
+//         fontSize : '48px', //font-size -> fontSize
+//         fontWeight: 'bold', //font-weight -< fontWeight
+//         padding: 16 //단위를 생략하면 px로 지정됩니다.
+//       }}
+//     >
+//       {name}
+//     </div>
+//   );
+// }
+
+// export default App;
 
 // function App() {
 //   const name = '리액트';
@@ -148,7 +209,6 @@ export default App;
 // }
 
 // export default App;
-
 
 /*
 JSX코드 변환 전
