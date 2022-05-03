@@ -1,10 +1,26 @@
-import Counter from './Counter';
+import EventPractice from './EventPractice';
 
 const App = () => {
-  return <Counter />;
+  return <EventPractice />;
 };
 
 export default App;
+
+// import Say from './Say';
+
+// const App = () => {
+//   return <Say />;
+// };
+
+// export default App;
+
+// import Counter from './Counter';
+
+// const App = () => {
+//   return <Counter />;
+// };
+
+// export default App;
 
 // import MyComponent from "./MyComponent";
 
