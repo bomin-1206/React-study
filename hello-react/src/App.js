@@ -1,10 +1,36 @@
-import EventPractice from './EventPractice';
+import { Component } from 'react';
+import ScrollBox from './ScrollBox';
 
-const App = () => {
-  return <EventPractice />;
-};
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <ScrollBox />
+      </div>
+    );
+  }
+}
 
 export default App;
+
+// import { Component } from 'react';
+// import ValidationSample from './ValidationSample';
+
+// class App extends Component {
+//   render() {
+//     return <ValidationSample />;
+//   }
+// }
+
+// export default App;
+
+// import EventPractice from './EventPractice';
+
+// const App = () => {
+//   return <EventPractice />;
+// };
+
+// export default App;
 
 // import Say from './Say';
 
