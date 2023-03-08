@@ -15,7 +15,9 @@ function App() {
         </Container>
       </Navbar>
 
-      <div className="main-bg"></div>
+      <div className="main-bg">
+        <h1>Shoppingmall</h1>
+      </div>
     </div>
   );
 }
