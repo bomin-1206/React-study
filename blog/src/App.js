@@ -1,6 +1,6 @@
 /* eslint-disable */ /* WARNING 문구 끄기 */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -120,5 +120,25 @@ function Modal(props) {
     </div>
   )
 }
+
+// class Modal2 extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       name : 'kim',
+//       age : 20
+//     }
+//   }
+//   render() {
+//     return (
+//       <div>
+//         안녕 {this.state.name}
+//         <button onClick={() => {
+//           this.setState({ name : 'park'}) // state 수정
+//         }}>버튼</button>
+//       </div>
+//     )
+//   }
+// }
 
 export default App;
