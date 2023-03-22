@@ -72,14 +72,23 @@ function App() {
                 좋아요변경(copy);
                 }}>❤️</span> {좋아요[i]} </h4>
               <p>{date}</p>
-              <button onClick={() => {글제목.splice(i, 1)}}>글삭제</button>
+              <button onClick={() => {
+                let copy = [...글제목]
+                copy.splice(i, 1);
+                글제목변경(copy);
+              }}>글삭제</button>
             </div>
           )
         }) 
       }
       
       <input onChange={(e) => { 입력값변경(e.target.value) }}/>
-      <button onClick={() => { 글제목.unshift(입력값) }}>등록</button>
+      {/* <button onClick={() => { 글제목.unshift(입력값) }}>등록</button> */}
+      <button onClick={()=> {
+        let copy = [...글제목]
+        copy.unshift(입력값)
+        글제목변경(copy)
+      }}>글 등록</button>
       
       {
         modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} title={title}/> : null
