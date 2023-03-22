@@ -9,8 +9,9 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자코트 추천', '강남 우동맛집', '파이썬 독학']);
   let [date, setDate] = useState('2월 17일 발행');
   let [좋아요, 좋아요변경] = useState(0);
-  // let [modal, setModal] = useState(false);
-  let [click, setClick] = useState(0);
+  let [modal, setModal] = useState(false);
+  // let [modal, setModal] = useState(0); // 내가 한 모달 띄우기 숙제
+
 
   // let num = [1,2];
 
@@ -46,18 +47,18 @@ function App() {
       </div>
       <div className='list'>
         <h4 onClick={() => {
-          // setModal(true);
-          setClick(click + 1)
+          setModal(!modal);
+          // setModal(modal + 1)
         }}>{글제목[2]}</h4>
         <p>{date}</p>
       </div>
       
-      {/* {
-        modal == true ? <Modal /> : null
-      } */}
       {
-        click%2 == 1 ? <Modal /> : null
+        modal == true ? <Modal /> : null
       }
+      {/* {
+        modal%2 == 1 ? <Modal /> : null
+      } */} 
 
       {/* <h4>{post}</h4> */}
     </div>
