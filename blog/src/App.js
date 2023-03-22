@@ -12,6 +12,7 @@ function App() {
   let [modal, setModal] = useState(false);
   // let [modal, setModal] = useState(0); // 내가 한 모달 띄우기 숙제
   let [title, setTitle] = useState(0);
+  let [입력값, 입력값변경] = useState('');
 
   // [1,2,3].map(function(a) {
   //   // array 자료 갯수만큼 함수안의 코드 실행해줌
@@ -64,16 +65,21 @@ function App() {
         글제목.map(function(title, i) {
           return (
             <div className='list'>
-              <h4 onClick={() => { setModal(!modal); setTitle(i) }}>{title}<span onClick={() => { 
+              <h4 onClick={() => { setModal(!modal); setTitle(i) }}>{title}<span onClick={(e) => { 
+                e.stopPropagation(); // 상위 HTML로 퍼지는 이벤트버블링을 막고싶으면
                 let copy = [...좋아요];
                 copy[i] = copy[i] + 1;
                 좋아요변경(copy);
                 }}>❤️</span> {좋아요[i]} </h4>
               <p>{date}</p>
+              <button onClick={() => {글제목.splice(i, 1)}}>글삭제</button>
             </div>
           )
         }) 
       }
+      
+      <input onChange={(e) => { 입력값변경(e.target.value) }}/>
+      <button onClick={() => { 글제목.unshift(입력값) }}>등록</button>
       
       {
         modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} title={title}/> : null
