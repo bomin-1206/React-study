@@ -8,9 +8,16 @@ function App() {
   let post = '강남 우동 맛집';
   let [글제목, 글제목변경] = useState(['남자코트 추천', '강남 우동맛집', '파이썬 독학']);
   let [date, setDate] = useState('2월 17일 발행');
-  let [좋아요, 좋아요변경] = useState(0);
+  let [좋아요, 좋아요변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
   // let [modal, setModal] = useState(0); // 내가 한 모달 띄우기 숙제
+  let [title, setTitle] = useState(0);
+
+  // [1,2,3].map(function(a) {
+  //   // array 자료 갯수만큼 함수안의 코드 실행해줌
+  //   // 함수의 파라미터는 array안에 있던 자료임
+  //   // return에 뭐 적으면 array로 담아줌
+  // })
 
 
   // let num = [1,2];
@@ -37,7 +44,7 @@ function App() {
         copy.sort();
         글제목변경(copy);
       }}>가나다순정렬</button>
-      <div className='list'>
+      {/* <div className='list'>
         <h4>{글제목[0]}<span onClick={() => { 좋아요변경(좋아요 + 1) }}>❤️</span> {좋아요} </h4>
         <p>{date}</p>
       </div>
@@ -51,10 +58,25 @@ function App() {
           // setModal(modal + 1)
         }}>{글제목[2]}</h4>
         <p>{date}</p>
-      </div>
+      </div> */}
+
+      {
+        글제목.map(function(title, i) {
+          return (
+            <div className='list'>
+              <h4 onClick={() => { setModal(!modal); setTitle(i) }}>{title}<span onClick={() => { 
+                let copy = [...좋아요];
+                copy[i] = copy[i] + 1;
+                좋아요변경(copy);
+                }}>❤️</span> {좋아요[i]} </h4>
+              <p>{date}</p>
+            </div>
+          )
+        }) 
+      }
       
       {
-        modal == true ? <Modal /> : null
+        modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} title={title}/> : null
       }
       {/* {
         modal%2 == 1 ? <Modal /> : null
@@ -71,12 +93,15 @@ function App() {
 //   )
 // }
 
-function Modal() {
+function Modal(props) {
   return (
     <div className='modal'>
-      <h4>제목</h4>
+      <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button onClick={() => {
+        props.글제목변경(['여자코트 추천', '강남 우동맛집', '파이썬 독학']);
+      }}>글수정</button>
     </div>
   )
 }
