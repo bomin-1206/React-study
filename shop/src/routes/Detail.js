@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -34,6 +35,7 @@ function Detail(props) {
   });
   let [count, setCount] = useState(0);
   let [alert, setAlert] = useState(true);
+  let [tab, setTab] = useState(0);
 
   useEffect(() => { // mount, update시 코드 실행해줌
     // useEffect안에 있는 코드는 html 렌더링 후에 동작합니다.
@@ -69,15 +71,37 @@ function Detail(props) {
           />
         </div>
         <div className="col-md-6">
-          <input></input>
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}원</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+      
+      <Nav variant="tabs" defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link eventKey="link0" onClick={()=>{ setTab(0) }}>버튼0</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link1" onClick={()=>{ setTab(1) }}>버튼1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link2" onClick={()=>{ setTab(2) }}>버튼2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab} />
     </div>
   );
+}
+
+function TabContent(props) {
+  if(props.tab == 0) {
+    return <div>내용0</div>
+  } else if(props.tab == 1) {
+    return <div>내용1</div>
+  } else {
+    return <div>내용2</div>
+  }
 }
 
 export default Detail;

@@ -9,13 +9,14 @@ import { useState } from "react";
 import data from './data';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from "./routes/Detail";
+import axios from "axios";
 
 // import bg from './img/bg.png';
 function App() {
 
-  let [shoes] = useState(data);
-  let [image] = useState(['https://codingapple1.github.io/shop/shoes1.jpg', 'https://codingapple1.github.io/shop/shoes2.jpg', 'https://codingapple1.github.io/shop/shoes3.jpg']);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+  let [click, setClick] = useState(0);
 
   return (
     <div className="App">
@@ -45,12 +46,37 @@ function App() {
                 {
                   shoes.map(function(e, i) {
                     return (
-                      <Card shoes={shoes} image={image} i={i}/>
+                      <Card shoes={shoes[i]} i={i} />
                     )
                   })
                 }
               </Row>
           </Container>
+          <button onClick={()=> {
+            setClick(click + 1);
+            if(click == 1) {
+              <Loding />
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((result) => {
+                let copy = [...shoes, ...result.data];
+                setShoes(copy);
+              })
+              .catch(() => {
+                console.log('실패함');
+              })
+            } else if(click == 2) {
+              axios.get('https://codingapple1.github.io/shop/data3.json')
+              .then((result) => {
+                let copy = [...shoes, ...result.data];
+                setShoes(copy);
+              })
+              .catch(() => {
+                console.log('실패함');
+              })
+            } else {
+              alert('더이상 상품이 없습니다.')
+            }
+          }}>더보기</button>
         </>
         } />
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
@@ -70,18 +96,19 @@ function App() {
 
         <Route path="*" element={<div>404</div>} />
       </Routes>
+
     </div>
   );
 }
 
 function Card(props) {
   return (
-    <Col>
-      <img src={props.image[props.i]} width={'80%'}/>
+    <div className="col-md-4">
+      <img src={'https://codingapple1.github.io/shop/shoes' + (props.i+1) + '.jpg'} width={'80%'} />
       {/* <img src={process.env.PUBLIC_URL + '/logo192.png'} /> public 폴더 안에 있는 이미지 쓰는 권장방식 */}
-      <h4>{props.shoes[props.i].title}</h4>
-      <p>{props.shoes[props.i].content}</p>
-    </Col>
+      <h4>{props.shoes.title}</h4>
+      <p>{props.shoes.content}</p>
+    </div>
   )
 }
 
@@ -100,6 +127,12 @@ function Event() {
       <h4>오늘의 이벤트</h4>
       <Outlet></Outlet>
     </div>
+  )
+}
+
+function Loding() {
+  return (
+    <p>로딩중입니다~!</p>
   )
 }
 
