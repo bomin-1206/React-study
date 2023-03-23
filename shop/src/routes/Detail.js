@@ -27,7 +27,7 @@ import styled from 'styled-components';
 //   }
 // }
 
-function Detail(props) {  
+function Detail(props) {
 
   let {id} = useParams();
   let 찾은상품 = props.shoes.find(function(x) {
@@ -94,14 +94,29 @@ function Detail(props) {
   );
 }
 
-function TabContent(props) {
-  if(props.tab == 0) {
-    return <div>내용0</div>
-  } else if(props.tab == 1) {
-    return <div>내용1</div>
-  } else {
-    return <div>내용2</div>
-  }
+function TabContent({tab}) {
+  
+  let [fade, setFade] = useState('')
+
+  useEffect(()=>{
+    setTimeout(()=>{ setFade('end') }, 100)
+    return ()=> {
+      setFade('')
+    }
+  },[tab])
+
+  return(
+    <div className={'start ' + fade}>
+      { [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tab]}
+    </div>
+  )
+  // if(props.tab == 0) {
+  //   return <div>내용0</div>
+  // } else if(props.tab == 1) {
+  //   return <div>내용1</div>
+  // } else {
+  //   return <div>내용2</div>
+  // }
 }
 
 export default Detail;
