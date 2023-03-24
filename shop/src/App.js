@@ -5,16 +5,19 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from "react";
+import { createContext, useState } from "react";
 import data from './data';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from "./routes/Detail";
 import axios from "axios";
 
+export let Context1 = createContext()
+
 // import bg from './img/bg.png';
 function App() {
 
   let [shoes, setShoes] = useState(data);
+  let [재고, 재고변경] = useState([10,11,12]);
   let navigate = useNavigate();
   let [click, setClick] = useState(0);
 
@@ -79,8 +82,11 @@ function App() {
           }}>더보기</button>
         </>
         } />
-        <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
-
+        <Route path="/detail/:id" element={
+          <Context1.Provider value={ { 재고, shoes } }>
+            <Detail shoes={shoes} />
+          </Context1.Provider>
+        } />
         <Route path="/about" element={<About />}>
           <Route path="member" element={<p>멤버임</p>} />
           <Route path="location" element={<p>위치정보임</p>} />

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
+import { Context1 } from './../App';
 
 // let Btn = styled.button`
 //   background: ${ props => props.bg };
@@ -28,6 +29,8 @@ import styled from 'styled-components';
 // }
 
 function Detail(props) {
+
+  let {재고, shoes} = useContext(Context1)
 
   let {id} = useParams();
   let 찾은상품 = props.shoes.find(function(x) {
