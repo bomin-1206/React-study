@@ -1,6 +1,11 @@
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 function Cart() {
+  let a = useSelector((state) => {
+    return state;
+  }); // Redux store 가져옴
+  console.log(a.user)
   return (
     <div>
       <Table striped bordered hover>
@@ -17,7 +22,7 @@ function Cart() {
             <td>1</td>
             <td>안녕</td>
             <td>안녕</td>
-            <td>안녕</td>
+            <td>{a}</td>
           </tr>
         </tbody>
       </Table>
