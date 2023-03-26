@@ -84,9 +84,7 @@ function App() {
         </>
         } />
         <Route path="/detail/:id" element={
-          <Context1.Provider value={ { 재고, shoes } }>
-            <Detail shoes={shoes} />
-          </Context1.Provider>
+          <Detail shoes={shoes} />
         } />
 
         <Route path="/cart" element={<Cart />} />
