@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import styled from 'styled-components';
-import { Context1 } from './../App';
+// import styled from 'styled-components';
+import { addItem } from "../store";
+// import { Context1 } from './../App';
 
 // let Btn = styled.button`
 //   background: ${ props => props.bg };
@@ -30,26 +32,27 @@ import { Context1 } from './../App';
 
 function Detail(props) {
 
-  let {재고, shoes} = useContext(Context1)
-
   let {id} = useParams();
   let 찾은상품 = props.shoes.find(function(x) {
-    return x.id == id
+    console.log(x)
+    return x.id === id;
   });
-  let [count, setCount] = useState(0);
-  let [alert, setAlert] = useState(true);
-  let [tab, setTab] = useState(0);
 
-  useEffect(() => { // mount, update시 코드 실행해줌
-    // useEffect안에 있는 코드는 html 렌더링 후에 동작합니다.
-    // - 어려운 연산
-    // - 서버에서 데이터 가져오는 작업
-    // - 타이머 장착하는거
-    let a =setTimeout(() => { setAlert(false) }, 2000);
-    return () => { // useEffect 동작 전에 실행됨
-      // clearTimeout(a); // 타이머 제거해주는 함수
-    }
-  }, []) // []있어면 더 정확함
+  // let [count, setCount] = useState(0);
+  let [alert] = useState(true);
+  let [tab, setTab] = useState(0);
+  let dispatch = useDispatch();
+
+  // useEffect(() => { // mount, update시 코드 실행해줌
+  //   // useEffect안에 있는 코드는 html 렌더링 후에 동작합니다.
+  //   // - 어려운 연산
+  //   // - 서버에서 데이터 가져오는 작업
+  //   // - 타이머 장착하는거
+  //   // let a = setTimeout(() => { setAlert(false) }, 2000);
+  //   return () => { // useEffect 동작 전에 실행됨
+  //     // clearTimeout(a); // 타이머 제거해주는 함수
+  //   }
+  // }, []) // []있어면 더 정확함
   // useEffect 실행 조건 넣을 수 있는 곳은 []
   // []안에 있는 state가 변할 때마다 실행해줌
 
@@ -63,21 +66,20 @@ function Detail(props) {
       </BlackBox> */}
 
       {
-        alert == true ? <div className="alert alert-warning">2초이내 구매시 할인</div> : null
+        alert === true ? <div className="alert alert-warning">2초이내 구매시 할인</div> : null
       }
 
       <div className="row">
         <div className="col-md-6">
-          <img
-            src="https://codingapple1.github.io/shop/shoes1.jpg"
-            width={"100%"}
-          />
+          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width={"100%"} />
         </div>
         <div className="col-md-6">
-          <h4 className="pt-5">{찾은상품.title}</h4>
-          <p>{찾은상품.content}</p>
-          <p>{찾은상품.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
+          <h4 className="pt-5">{props.shoes[id].title}</h4>
+          <p>{props.shoes[id].content}</p>
+          <p>{props.shoes[id].price}원</p>
+          <button className="btn btn-danger" onClick={()=>{
+            dispatch(addItem({ id : 1, name : 'Red Knit', count : 1}))
+          }}>주문하기</button>
         </div>
       </div>
       

@@ -12,13 +12,11 @@ import Detail from "./routes/Detail";
 import axios from "axios";
 import Cart from "./routes/Cart";
 
-export let Context1 = createContext()
-
 // import bg from './img/bg.png';
 function App() {
 
   let [shoes, setShoes] = useState(data);
-  let [재고, 재고변경] = useState([10,11,12]);
+  // let [재고, 재고변경] = useState([10,11,12]);
   let navigate = useNavigate();
   let [click, setClick] = useState(0);
 
@@ -31,7 +29,7 @@ function App() {
             <Nav.Link onClick={() => { navigate('/') }}>Home</Nav.Link>
             {/* <Nav.Link onClick={() => { navigate(1) }}>Home</Nav.Link> {/* 앞으로 한 페이지 이동 */}
             {/* <Nav.Link onClick={() => { navigate(-1) }}>Home</Nav.Link> 뒤로 한 페이지 이동 */}
-            <Nav.Link onClick={() => { navigate('/detail') }}>Detail</Nav.Link>
+            <Nav.Link onClick={() => { navigate('/cart') }}>Cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -58,7 +56,7 @@ function App() {
           </Container>
           <button onClick={()=> {
             setClick(click + 1);
-            if(click == 1) {
+            if(click === 1) {
               <Loding />
               axios.get('https://codingapple1.github.io/shop/data2.json')
               .then((result) => {
@@ -68,7 +66,7 @@ function App() {
               .catch(() => {
                 console.log('실패함');
               })
-            } else if(click == 2) {
+            } else if(click === 2) {
               axios.get('https://codingapple1.github.io/shop/data3.json')
               .then((result) => {
                 let copy = [...shoes, ...result.data];
