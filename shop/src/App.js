@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import data from './data';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from "./routes/Detail";
@@ -15,6 +15,16 @@ import Cart from "./routes/Cart";
 // import bg from './img/bg.png';
 function App() {
 
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify( [] ))
+  }, [])
+
+  let obj = {name : 'kim'}
+  // localStorage.setItem('data', obj); // array/object 저장하려면 JSON으로 바꾸면 됩니다.
+  localStorage.setItem('data', JSON.stringify(obj)); // array/object -> JSON으로 변환
+  let 꺼낸거 = localStorage.getItem('data')
+  console.log(JSON.parse(꺼낸거).name); // JSON->array/object로 변환은 JSON.parse()
+  
   let [shoes, setShoes] = useState(data);
   // let [재고, 재고변경] = useState([10,11,12]);
   let navigate = useNavigate();
@@ -48,7 +58,7 @@ function App() {
                 {
                   shoes.map(function(e, i) {
                     return (
-                      <Card shoes={shoes[i]} i={i} />
+                      <Card shoes={shoes[i]} i={i} navigate={navigate} />
                     )
                   })
                 }
@@ -108,7 +118,7 @@ function App() {
 
 function Card(props) {
   return (
-    <div className="col-md-4">
+    <div className="col-md-4" onClick={()=>{ props.navigate('/detail/' + (props.i)) }}>
       <img src={'https://codingapple1.github.io/shop/shoes' + (props.i+1) + '.jpg'} width={'80%'} />
       {/* <img src={process.env.PUBLIC_URL + '/logo192.png'} /> public 폴더 안에 있는 이미지 쓰는 권장방식 */}
       <h4>{props.shoes.title}</h4>

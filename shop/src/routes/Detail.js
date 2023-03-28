@@ -33,15 +33,21 @@ import { addItem } from "../store";
 function Detail(props) {
 
   let {id} = useParams();
-  let 찾은상품 = props.shoes.find(function(x) {
-    console.log(x)
-    return x.id === id;
-  });
+  let 찾은상품 = props.shoes.find(x => x.id == id);
 
   // let [count, setCount] = useState(0);
   let [alert] = useState(true);
   let [tab, setTab] = useState(0);
   let dispatch = useDispatch();
+
+  useEffect(()=>{
+    let watch = localStorage.getItem('watched');
+    watch = JSON.parse(watch)
+    watch.push(찾은상품.id);
+    watch = new Set(watch) // set 자료형(중복제거)
+    watch = Array.from(watch) // array로 변환
+    localStorage.setItem('watched', JSON.stringify(watch))
+  },[])
 
   // useEffect(() => { // mount, update시 코드 실행해줌
   //   // useEffect안에 있는 코드는 html 렌더링 후에 동작합니다.
@@ -71,12 +77,12 @@ function Detail(props) {
 
       <div className="row">
         <div className="col-md-6">
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width={"100%"} />
+          <img src={'https://codingapple1.github.io/shop/shoes' + (id) + '.jpg'} width={'100%'} />
         </div>
         <div className="col-md-6">
-          <h4 className="pt-5">{props.shoes[id].title}</h4>
-          <p>{props.shoes[id].content}</p>
-          <p>{props.shoes[id].price}원</p>
+          <h4 className="pt-5">{찾은상품.title}</h4>
+          <p>{찾은상품.content}</p>
+          <p>{찾은상품.price}원</p>
           <button className="btn btn-danger" onClick={()=>{
             dispatch(addItem({ id : 1, name : 'Red Knit', count : 1}))
           }}>주문하기</button>
