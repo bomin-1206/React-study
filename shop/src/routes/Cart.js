@@ -10,13 +10,13 @@ import { increase } from "../store/userSlice";
 //   return <div>자식임</div>
 // })
 
-function 함수() {
-  return
-}
+// function 함수() {
+//   return
+// }
 
 function Cart() {
 
-  let result = useMemo(()=>{ return 함수()}, [state])
+  // let result = useMemo(()=>{ return 함수()}, [state])
 
   let state = useSelector((state)=>{ return state }) // store에 있는 state를 모두 가져다씀
   // let state = useSelector((state)=>{ return state.user }) // store에 있는 user만 가져다씀

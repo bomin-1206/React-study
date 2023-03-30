@@ -10,6 +10,7 @@ import data from './data';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from "axios";
 import { useQuery } from "react-query";
+import Input from "./Input";
 
 // import Detail from "./routes/Detail";
 // import Cart from "./routes/Cart";
@@ -62,7 +63,6 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-
       
       {/* <Link style={{padding: '10px', textDecoration: 'none', color : 'black' }} to="/">홈</Link>
       <Link style={{padding: '10px', textDecoration: 'none', color : 'black' }} to="/detail">상세페이지</Link> */}
@@ -114,6 +114,7 @@ function App() {
               <Detail shoes={shoes} />
           } />
 
+          <Route path="/input" elemment={<Input />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />}>
             <Route path="member" element={<p>멤버임</p>} />
