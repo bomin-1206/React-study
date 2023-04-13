@@ -114,7 +114,7 @@ function App() {
               <Detail shoes={shoes} />
           } />
 
-          <Route path="/input" elemment={<Input />} />
+          <Route path="/input" element={<Input />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />}>
             <Route path="member" element={<p>멤버임</p>} />

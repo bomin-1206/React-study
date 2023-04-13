@@ -1,3 +1,4 @@
+import { useDeferredValue } from "react";
 import { useState, useTransition } from "react";
 
 let a = new Array(10000).fill(0)
@@ -5,14 +6,19 @@ let a = new Array(10000).fill(0)
 function Input() {
     let [name,setName] = useState('')
     let [isPending, startTransition] = useTransition()
+    let state = useDeferredValue(name)
 
     return (
         <div className="Input">
-            <input onChange={(e)=>{ setName(e.target.value)}} />
-            <p>안녕</p>
+            <input onChange={(e)=>{
+                startTransition(()=>{
+                    setName(e.target.value)
+                })
+            }} />
             {
+                isPending ? '로딩중' :
                 a.map(()=>{
-                    return <div>{name}</div>
+                    return <div>{state}</div>
                 })
             }
         </div>
